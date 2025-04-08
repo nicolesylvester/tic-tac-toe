@@ -1,0 +1,458 @@
+/* ===========================
+   GLOBAL THEME
+=========================== */
+:root {
+  --primary-bg: #f0f4f8;
+  --secondary-bg: #ffffff;
+  --accent-color: #2a9d8f;
+  --accent-dark: #23876b;
+  --scoreboard-bg: #e2e8f0;
+  --text-color: #264653;
+  --border-color: #cad2d3;
+  --menu-bg: #ffffff;
+  --cell-hover-bg: #e1ecef;
+  --x-color: #e74c3c;
+  --o-color: #3498db;
+  --font-family: 'Figtree', sans-serif;
+}
+
+body.dark-mode {
+  --primary-bg: #2d2d2d;
+  --secondary-bg: #3c3c3c;
+  --accent-color: #2a9d8f;
+  --accent-dark: #23876b;
+  --scoreboard-bg: #444;
+  --text-color: #eee;
+  --border-color: #555;
+  --menu-bg: #3c3c3c;
+  --cell-hover-bg: #4a4a4a;
+}
+
+/* ===========================
+   BASE STYLES
+=========================== */
+body {
+  font-family: var(--font-family);
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: var(--primary-bg);
+  color: var(--text-color);
+}
+
+/* ===========================
+   SETUP SCREEN STYLES
+=========================== */
+#setup{
+  width:100%;
+  max-width:500px;
+  margin:0 auto;
+  padding:2em;
+  background:var(--menu-bg);
+  border-radius:10px;
+  box-shadow:0 6px 20px rgba(0,0,0,.1);
+  text-align:center;
+}
+  
+#setup h1 {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+  color: var(--accent-color);
+}
+
+#gameOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+}
+
+#gameOptions fieldset {
+  border: none;
+  margin: 1em 0;
+}
+
+#gameOptions legend {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  color: var(--text-color);
+}
+
+#gameOptions label {
+  display: block;
+  font-size: 1.1em;
+  color: var(--text-color);
+  margin-bottom: 0.5em;
+}
+
+#gameOptions input[type="text"] {
+  width: 75%;
+  padding: 0.8em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: border-color 0.3s ease;
+}
+
+#gameOptions input[type="text"]:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+#gameOptions input[type="radio"] {
+  margin-right: 0.5em;
+  accent-color: var(--accent-color);
+} 
+  
+/* ===========================
+   NAME FIELDS
+=========================== */
+#nameOptions {
+  margin-top: 1em;
+  text-align: center;
+}
+
+#nameOptions > div {
+  margin-bottom: 1em;
+}
+
+#nameOptions label {
+  display: block;
+  margin-top: 0.5em;
+}
+
+#nameOptions input[type="text"] {
+  width: 75%;
+  padding: 0.8em;
+  margin-bottom: 0.5em;
+  display: inline-block;
+}
+
+/* ===========================
+   START BUTTON
+=========================== */
+#startGameBtn {
+  width: 75%;
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0.8em 2em;
+  font-size: 1.2em;
+  background-color: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1em;
+  transition: background-color 0.3s ease;
+}
+
+#startGameBtn:hover {
+  background-color: var(--accent-dark);
+}
+  
+/* ===========================
+   MAIN GAME VIEW
+=========================== */
+.view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  max-width: 500px;
+  padding: 1em;
+  background: var(--secondary-bg);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  border-radius: 8px;
+}
+
+/* ===========================
+   GAME BOARD
+=========================== */
+#board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 20px auto;
+  max-width: 400px;
+}
+  
+.cell {
+  background: var(--secondary-bg);
+  border: 2px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(2em, 4vw, 3em);
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  aspect-ratio: 1 / 1;
+}
+
+.cell:hover {
+  background: var(--cell-hover-bg);
+  transform: scale(1.05);
+}
+
+.cell:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
+}
+
+
+@media (max-width: 600px) {
+  #board {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    max-width: 90%;
+    margin: 10px auto;
+  }
+  .cell {
+    font-size: 2em;
+    padding: 10px;
+  }
+}
+
+/* ===========================
+   Button Styles
+=========================== */
+button {
+  padding: 0.8em 1.5em;
+  font-size: 1em;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--accent-color);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #23876b;
+}
+
+/* ===========================
+   SYMBOL COLORS
+=========================== */
+.x {
+  color: var(--x-color);
+}
+
+.o {
+  color: var(--o-color);
+}
+
+/* ===========================
+   STATUS DISPLAY
+=========================== */
+#status {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 1em;
+  padding: 0.5em;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.x-turn {
+  background-color: rgba(231, 76, 60, 0.2);
+  color: var(--x-color);
+}
+
+.o-turn {
+  background-color: rgba(52, 152, 219, 0.2);
+  color: var(--o-color);
+}
+
+/* ===========================
+   WINNING CELLS & SCORE
+=========================== */
+.winning-cell {
+  background-color: #d4edda;
+  border-color: #28a745;
+  animation: pulse 0.5s ease-out;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+#scoreboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1em;
+  padding: 1em;
+  background: var(--scoreboard-bg);
+  border-top: 2px solid var(--border-color);
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+}
+
+.score-item {
+  text-align: center;
+  background-color: var(--secondary-bg);
+  border-radius: 8px;
+  padding: 0.5em 1em;
+  margin: 0.5em;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.score-item:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.score-value {
+  display: block;
+  font-size: 1.25em;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.score-label {
+  display: block;
+  margin-top: 0.3em;
+  font-size: 0.9em;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@keyframes scorePulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.score-update {
+  animation: scorePulse 0.5s ease-out;
+}
+
+/* ===========================
+   OVERLAYS & BANNERS
+=========================== */
+#dimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  z-index: 5;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#dimmer.active {
+  opacity: 1;
+}
+
+#banner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 400px;
+  background: var(--secondary-bg);
+  padding: 2em;
+  text-align: center;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#banner.active {
+  opacity: 1;
+}
+
+#banner h2 {
+  margin: 0 0 1em 0;
+  font-size: 1.5em;
+}
+
+#banner button {
+  padding: 0.8em 1.2em;
+  font-size: 1em;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--accent-color);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#banner button:hover {
+  background-color: var(--accent-dark);
+}
+
+#playAgainBtn,
+#backToOptionsBtn {
+  padding: 0.8em 1.2em;
+  margin: 0.5em;
+}
+
+/* ===========================
+   DARK MODE TOGGLE SWITCH
+=========================== */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0;
+  right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 24px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: var(--accent-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}

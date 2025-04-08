@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tic Tac Toe - Game Options</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="theme-toggle">
+      <label class="switch">
+        <input type="checkbox" id="darkModeToggle">
+        <span class="slider round"></span>
+      </label>
+    </div>
+  </header>
+  <!-- Setup Screen (Game Options) -->
+  <section id="setup" class="active">
+    <h1>Tic Tac Toe</h1>
+    <form id="gameOptions">
+      <fieldset>
+        <legend>Choose Game Mode</legend>
+        <label>
+          <input type="radio" name="gameMode" value="pvp" checked>
+          Player vs Player
+        </label>
+        <label>
+          <input type="radio" name="gameMode" value="pve">
+          Player vs AI
+        </label>
+      </fieldset>
+      <fieldset id="difficultyOptions" style="display: none;">
+        <legend>Choose AI Difficulty</legend>
+        <label>
+          <input type="radio" name="difficulty" value="easy" checked>
+          Easy
+        </label>
+        <label>
+          <input type="radio" name="difficulty" value="medium">
+          Medium
+        </label>
+        <label>
+          <input type="radio" name="difficulty" value="hard">
+          Hard
+        </label>
+      </fieldset>
+      <!-- Name Input Fields -->
+      <fieldset id="nameOptions">
+        <!-- For PvP: Two name fields -->
+        <div id="pvpNames">
+          <label for="player1Name">Player 1 Name:</label>
+          <input type="text" id="player1Name" placeholder="Player 1" required>
+          <label for="player2Name">Player 2 Name:</label>
+          <input type="text" id="player2Name" placeholder="Player 2" required>
+        </div>
+        <!-- For PvE: One name field -->
+        <div id="pveNames" style="display: none;">
+          <label for="humanName">Your Name:</label>
+          <input type="text" id="humanName" placeholder="Your Name" required>
+        </div>
+      </fieldset>
+      <button type="button" id="startGameBtn">Start Game</button>
+    </form>
+  </section>
+  
+  <!-- Gameplay Screen -->
+  <section id="gameplay" class="view" style="display: none; position: relative;">
+    <div id="dimmer" style="display: none;"></div>
+    
+    <!-- Outcome Banner Overlay -->
+    <div id="banner" style="display: none;">
+      <h2 id="result"></h2>
+      <button id="playAgainBtn">Play Again</button>
+      <button id="backToOptionsBtn">Back to Options</button>
+    </div>
+    
+    <div id="status">Waiting to accept your move...</div>
+    <div id="board">
+      <!-- 3x3 grid for Tic Tac Toe -->
+      <div class="cell" data-index="0" tabindex="0"></div>
+      <div class="cell" data-index="1" tabindex="0"></div>
+      <div class="cell" data-index="2" tabindex="0"></div>
+      <div class="cell" data-index="3" tabindex="0"></div>
+      <div class="cell" data-index="4" tabindex="0"></div>
+      <div class="cell" data-index="5" tabindex="0"></div>
+      <div class="cell" data-index="6" tabindex="0"></div>
+      <div class="cell" data-index="7" tabindex="0"></div>
+      <div class="cell" data-index="8" tabindex="0"></div>
+    </div>
+    <footer id="scoreboard">
+      <div class="score-item">
+        <span id="scoreXValue" class="score-value">0</span>
+      </div>
+      <div class="score-item">
+        <span id="scoreDrawValue" class="score-value">0</span>
+      </div>
+      <div class="score-item">
+        <span id="scoreOValue" class="score-value">0</span>
+      </div>
+    </footer>
+  </section>
+  
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
