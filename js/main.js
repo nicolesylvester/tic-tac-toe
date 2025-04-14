@@ -83,6 +83,7 @@ cells.forEach(cell => {
     boardState[index] = currentPlayer;
     cell.textContent = currentPlayer;
     cell.classList.add(currentPlayer.toLowerCase());
+    cell.classList.add('occupied');
     updateStatus();
 
     // process next steps based on game mode
@@ -223,7 +224,7 @@ function initializeBoard() {
   cells.forEach(cell => {
     cell.textContent = '';
     cell.setAttribute('tabindex', '0'); // make each cell focusable
-    cell.classList.remove('x', 'o', 'winning-cell'); // remove old color classes
+    cell.classList.remove('x', 'o', 'winning-cell', 'occupied'); // remove old color classes
   });
   updateStatus();
 }
@@ -247,8 +248,13 @@ function aiMove() {
   if (move !== undefined && boardState[move] === null) {
     boardState[move] = currentPlayer;
     const cell = document.querySelector(`.cell[data-index="${move}"]`);
+    cell.classList.add('active-ai');
+    setTimeout(() => {
+      cell.classList.remove('active-ai');
+    }, 100);
     cell.textContent = currentPlayer;
     cell.classList.add(currentPlayer.toLowerCase());
+    cell.classList.add('occupied');
     updateStatus();
     // after the AI moves, revert back to the human player if game continues
     if (!checkWinner(boardState) && boardState.includes(null)) {
